@@ -87,7 +87,7 @@ http.createServer( (request, response) => {
             sort:{$natural:1}
         });
         let chat = cursor.toArray();
-        let showText ="";
+        let show_text ="";
         chat.then((data) =>{
             for(let i = 0; i<data.length;i++){
                 let ts = data[i].date;
@@ -95,9 +95,8 @@ http.createServer( (request, response) => {
                 let date = new Date(ts);
                 let dateText = date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear() +" "+ 
                 date.getHours() + ":" + date.getMinutes()+ ":" +  date.getSeconds();
-                showText = "<p>" + "[" +  dateText + "] - " + data[i].user + ": " + data[i].msg + "<p/>";
-                console.log(showText);
-                response.write(showText);
+                show_text = "<p>" + "[" +  dateText + "] - " + data[i].user + ": " + data[i].msg + "<p/>";
+                response.write(show_text);
             }
             
             response.end();

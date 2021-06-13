@@ -14,22 +14,21 @@
 </div>
 
 <script>
+
 let last_date = 0;
+function set_last (data) {
+	last_date = data[data.length-1].date;
+}
 
 function print_chat (data){
 	let lista = '';
 	for (let i = 0; i < data.length; i++){
-
 		lista += "<li>"+data[i].user+": "+data[i].msg+"</li>";
 	}
-
 	document.getElementById("chat-msgs").innerHTML += lista;
 }
 
 
-function set_last (data) {
-	last_date = data[data.length-1].date;
-}
 
 
 
@@ -69,7 +68,6 @@ setInterval(() => {
 			.then( data => {
 				if (data.length == 0)
 					return;
-
 				print_chat(data);
 				set_last(data);
 			});
